@@ -73,6 +73,11 @@ public class MainListEnteros {
          * Ejercicio 2 (3 puntos)
          * Hallar el número mayor de la lista de enteros con programación funcional (API Java Stream)
          */
+        System.out.println("Número mayor");
+        numerosSuerte
+                .stream()
+                .max(Integer::compareTo)
+                .ifPresent(System.out::println);
 
         numerosSuerte.clear(); // Limpia o remueve todos los elementos de la lista
         System.out.println("(8)  Mi numeros de la suerte: " + numerosSuerte);
