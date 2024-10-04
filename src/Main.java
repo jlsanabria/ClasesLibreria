@@ -4,6 +4,7 @@ import model.Cliente;
 import model.ClienteComercial;
 import model.Empleado;
 import model.Persona;
+import util.DateUtil;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
@@ -92,11 +93,34 @@ public class Main {
         listaClientes.add(cliente2);
         listaClientes.add(cliente3);
 
-        System.out.println("Mi lista de clientes: \n" + listaClientes);
+        System.out.println("=============================================  CLIENTES  =======================================================");
+        listaClientes.forEach(System.out::println);
 
+        /**
+         * Ejemplo: Hallar los clientes que tengan al apellido paterno desde la A-M
+         */
+        System.out.println("==>> Clientes con el apellido paterno [A-M]");
+        listaClientes.stream()
+                .filter(cli ->  cli.getApPaterno().matches("^[A-M].*$"))
+                .forEach(System.out::println);
 
+        /**
+         * Ejemplo: Hallar o mostrar los CI (Cédula de Identidad) de la lista de clientes
+         */
+        System.out.println("==> CI de clientes");
+        listaClientes.stream()
+                .map(Cliente::getCi)
+                .forEach(System.out::println);
 
+        System.out.println("==> CI y Apellido Paterno");
+        listaClientes.stream()
+                .map(cli -> cli.getCi() + " <--> " + cli.getApPaterno())
+                .forEach(System.out::println);
 
-
+        System.out.println("==> CI, Apellido Paterno y edad");
+        listaClientes.stream()
+                .map(cli -> cli.getCi() + " <--> " + cli.getApPaterno() + " <--> " + cli.getFechaNacimiento() + " <--> "
+                        + DateUtil.obtenerEdad(cli.getFechaNacimiento()) + " años")
+                .forEach(System.out::println);
     }
 }

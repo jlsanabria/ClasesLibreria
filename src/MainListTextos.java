@@ -23,7 +23,10 @@ public class MainListTextos {
         textos.add("La revolución que nadie soñó");
         textos.add("El coronel no tiene quien le escriba");
         textos.add("De la tierra a la luna");
-        textos.add("los amigos");
+        textos.add("Tiene para avanzar");
+        textos.add("Trapizonda");
+        textos.add("Homo sapiens");
+        textos.add("No TIENE DINERO");
 
         // Imprimir collection (List)
         textos.forEach(System.out::println);
@@ -44,7 +47,17 @@ public class MainListTextos {
          */
         System.out.println(">>> Elementos que empiezan con L");
         textos.stream()
-                .filter(titulo -> titulo.matches("[Ll].*"))
+                .filter(titulo -> titulo.matches("^[Ll].*$"))
+                .forEach(System.out::println);
+
+        /**
+         * Ejercicio (3 puntos)
+         * Agregar 5 títulos de libros a la lista y luego hallar los elementos que tienen la palabra 'tiene'
+         * o la letra 'm'
+         * 7 minutos
+         */
+        textos.stream()
+                .filter(t -> t.toLowerCase().matches("^.*(tiene|m).*$"))
                 .forEach(System.out::println);
 
     }
